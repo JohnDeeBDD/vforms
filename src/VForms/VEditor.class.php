@@ -11,8 +11,8 @@ class VEditor{
     public function doEnqueueAdminScript(){
         \wp_enqueue_script('veditor', \get_site_url().'/wp-content/plugins/vforms/src/VForms/VEditor.js');
         //\wp_enqueue_script('veditor', \get_site_url().'/wp-content/plugins/vforms/src/VForms/VEditor.js');
-        \wp_enqueue_script('fb1', 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
-        \wp_enqueue_script('fb2', 'https://formbuilder.online/assets/js/form-builder.min.js');
+       // \wp_enqueue_script('fb1', 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
+       // \wp_enqueue_script('fb2', 'https://formbuilder.online/assets/js/form-builder.min.js');
 
         if(isset($_GET['post'])){
             //here we can assume "post" is a VForm
