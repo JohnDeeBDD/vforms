@@ -9,17 +9,18 @@ class VEditor{
     }
 
     public function doEnqueueAdminScript(){
+        //die("doEnqueueAdminScript");
         \wp_enqueue_script('veditor', \get_site_url().'/wp-content/plugins/vforms/src/VForms/VEditor.js');
         //\wp_enqueue_script('veditor', \get_site_url().'/wp-content/plugins/vforms/src/VForms/VEditor.js');
-       // \wp_enqueue_script('fb1', 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
-       // \wp_enqueue_script('fb2', 'https://formbuilder.online/assets/js/form-builder.min.js');
+        \wp_enqueue_script('fb1', 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
+        \wp_enqueue_script('fb2', 'https://formbuilder.online/assets/js/form-builder.min.js');
 
         if(isset($_GET['post'])){
             //here we can assume "post" is a VForm
             $formData = \get_the_content($_GET['post']);
-            \wp_localize_script( 'veditor', 'formData', $formData);
+            \wp_localize_script( 'veditor', 'formData', [$formData]);
         }else{
-            \wp_localize_script( 'veditor', 'formData', "[]");
+           \wp_localize_script( 'veditor', 'formData', []);
         }
 
         add_action("admin_footer", [new VEditor, 'doEchoAdminFooter']);
