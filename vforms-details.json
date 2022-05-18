@@ -1,0 +1,20 @@
+{
+  "name" : "VForms",
+  "slug" : "vforms",
+  "author" : "<a href='https://generalchicken.guru'>General Chicken</a>",
+  "author_profile" : "https://generalchicken.guru",
+  "version" : "2.0",
+  "download_url" : "https://generalchicken.guru/wp-content/uploads/vforms-v2.0.zip",
+  "requires" : "3.0",
+  "tested" : "5.9",
+  "requires_php" : "5.3",
+  "last_updated" : "2021-01-30 02:10:00",
+  "sections" : {
+    "description" : "VForms",
+    "installation" : "Click the activate button and that's it."
+  },
+  "banners" : {
+    "low" : "https://rudrastyh.com/wp-content/uploads/updater/banner-772x250.jpg",
+    "high" : "https://rudrastyh.com/wp-content/uploads/updater/banner-1544x500.jpg"
+  }
+}
