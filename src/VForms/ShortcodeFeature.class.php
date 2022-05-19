@@ -5,8 +5,8 @@ namespace VForms;
 class ShortcodeFeature{
 
     public function renderShortcode($args){
-
-        $content = "<script src='/wp-content/plugins/vforms/src/VForms/form-render.min.js' id='formRender'></script>";
+        $src = \plugin_dir_url(__FILE__) . "form-render.min.js";
+        $content = "<script src='$src' id='formRender'></script>";
         $content_post = get_post($args['id']);
         $json = $content_post->post_content;
         $hiddenFieldTag = "<input type = 'hidden' name = 'vform-post-id' value = '" . get_the_ID() . "' />";
@@ -26,7 +26,7 @@ jQuery(function($) {
           url = url + '?vform-rec-id=' + $('#vform-rec-id').val();
           $('#vform-form').attr('action', url);          
     });
-   VFormDataFiller.doFill(); 
+   //VFormDataFiller.doFill(); 
 });
 </script>
 OUTPUT;

@@ -10,7 +10,14 @@ console.log("vform-data-filler.js active");
 
 const VFormDataFiller = {};
 
+jQuery( document ).ready(function() {
+    console.log( "DOCUMENT READY!" );
+    VFormDataFiller.doFill();
+});
+
 VFormDataFiller.doFill = function() {
+    console.log("waiting for vFormData");
+    console.log(vFormData);
     vFormDataJSON = JSON.parse(vFormData);
     var data = VFormDataFiller.getDataEntries(vFormDataJSON);
     console.log(data);

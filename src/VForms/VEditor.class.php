@@ -29,7 +29,7 @@ class VEditor{
     public function doEchoAdminFooter(){
         $output = <<<OUTPUT
 <style>
-#postdivrich{display:none;}
+/*#postdivrich{display:none;}*/
 #minor-publishing{display:none;}
 .get-data{display:none !important;}
 .save-template{display:none !important;}
@@ -62,7 +62,7 @@ OUTPUT;
 OUTPUT;
         echo $output;
     }
-
+/*
     public function doRenderJS(){
         $output = $this->returnScriptHTML();
         $output = $output . <<<OUTPUT
@@ -99,12 +99,11 @@ jQuery( document ).ready(function() {
 </script>
 <style>
 #fb-editor{margin-top;15px;}
-#minor-publishing{display:none;}
-/*#postdivrich{display:none;}*/
 .formbuilder-icon-autocomplete{display:none;}
 </style>
 OUTPUT;
         echo $output;
     }
+    */
 }
 //wp-post-new-reload=true
