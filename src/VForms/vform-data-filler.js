@@ -16,7 +16,11 @@ jQuery( document ).ready(function() {
 });
 
 VFormDataFiller.doFill = function() {
-    //console.log("waiting for vFormData: ");
+    console.log("waiting for vFormData: ");
+    //if (typeof vFormDataJSON === 'undefined') {
+       // return;
+   // }
+    console.log("doFill");
     vFormDataJSON = JSON.parse(vFormData);
     //console.log(vFormData);
     var data = VFormDataFiller.getDataEntries(vFormDataJSON);

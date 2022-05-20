@@ -3,7 +3,7 @@
 Plugin Name: VForms
 Plugin URI: https://generalchicken.guru/vforms
 Description: A custom form application
-Version: 5.0
+Version: 6.0
 Author: johndee, victorp
 */
 
@@ -77,5 +77,6 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
     __FILE__, //Full path to the main plugin file or functions.php.
     'vforms'
 );
+
 
 add_action('wp_enqueue_scripts', [new \VForms\ShortcodeFeature(), 'doEnqueuFrontendScripts']);

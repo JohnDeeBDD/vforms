@@ -4,15 +4,36 @@ namespace VForms;
 
 class ShortcodeFeature{
 
+    public function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     public function renderShortcode($args){
         $src = \plugin_dir_url(__FILE__) . "form-render.min.js";
         $content = "<script src='$src' id='formRender'></script>";
         $content_post = get_post($args['id']);
         $json = $content_post->post_content;
+
+        //this tells vforms where the data came from:
         $hiddenFieldTag = "<input type = 'hidden' name = 'vform-post-id' value = '" . get_the_ID() . "' />";
+
+        if($this->isDataFillerPage()){
+            $vFormRecID = $_GET['vform-rec-id'];
+        }else{
+            $vFormRecID = $this->generateRandomString(15);
+        }
+        $hiddenVformRecIDField= "<input type = 'hidden' name = 'vform-rec-id' id = 'vform-rec-id' value = '$vFormRecID' />";
+
         $content = $content . <<<OUTPUT
 <form method = 'post' id = "vform-form"><div id = "fb-template" class = "fb-render"></div>
 $hiddenFieldTag
+$hiddenVformRecIDField
 </form>
 <script>
 console.log('ShortcodeFeatureClass.php');
@@ -26,18 +47,34 @@ jQuery(function($) {
           url = url + '?vform-rec-id=' + $('#vform-rec-id').val();
           $('#vform-form').attr('action', url);          
     });
-    VFormDataFiller.doFill(); 
-});
-</script>
 OUTPUT;
+        if($this->isDataFillerPage()){
+            $content = $content . "
+            VFormDataFiller.doFill();
+            ";
+        }
+        $content = $content . " 
+});
+</script>";
 
         return $content;
     }
 
+    public function isDataFillerPage(){
+        if(isset($_GET['vform-rec-id'])) {
+            $mypost = get_page_by_title($_GET['vform-rec-id'], OBJECT, 'vdata');
+            if (($_GET['vform-rec-id'] == "") or ($_GET['vform-rec-id'] == "undefined") or ($mypost === null)) {
+                return false;
+            }else{
+                return true;
+            }
+        }
+    }
+/*
     public function getJQuery($ID){
         $meta = get_post_meta( $ID );
         $keys = array_keys($meta);
-        $js = /** @lang js */
+        $js =
             <<<TAG
 <script>
             jQuery( document ).ready(function() {
@@ -54,21 +91,7 @@ var vFormsInputName = '$key';
 console.log("input name: " + vFormsInputName);
 console.log("data:");
 
-/*
-vFormsInputName = "#" + vFormsInputName;
-var inputType =  jQuery(vFormsInputName).prop('type');
-if(inputType === undefined){
-    vFormsInputName = "input[name='$key";
-    vFormsInputName = vFormsInputName + "[]'" + "]";
-    console.log(vFormsInputName);
-    inputType =  jQuery(vFormsInputName).prop('type');
-}
-console.log("type: " + inputType);
-if(inputType === "checkbox"){
-    console.log('data...');
 
-}
-*/
 
 OUTPUT;
             $js = $js . $output;
@@ -77,7 +100,7 @@ OUTPUT;
            // $js = $js . "console.log('" .$key . " " . $meta[$key][0] . "');";
         }
 
-        $js = /** @lang JavaScript */
+        $js =
             $js . <<<OUTPUT
             //alert("hello line 63");
            //jQuery('#vform-form').submit(function(){
@@ -97,14 +120,17 @@ OUTPUT;
         return ($js);
     }
 
+*/
+
     public function doEnqueuFrontendScripts(){
         //die("wtf");
-        \wp_enqueue_script('vform-data-filler', \get_site_url().'/wp-content/plugins/vforms/src/VForms/vform-data-filler.js');
-        if(isset($_GET['vform-rec-id'])){
+        if(!($this->isDataFillerPage())){
+            return;
+        }
 
-            $mypost = get_page_by_title($_GET['vform-rec-id'], OBJECT, 'vdata');
-            $vDataPostID = $mypost->ID;
-
+                $mypost = get_page_by_title($_GET['vform-rec-id'], OBJECT, 'vdata');
+                \wp_enqueue_script('vform-data-filler', \get_site_url().'/wp-content/plugins/vforms/src/VForms/vform-data-filler.js');
+                $vDataPostID = $mypost->ID;
 /*
 
             //$meta = json_encode($meta);
@@ -135,5 +161,5 @@ OUTPUT;
             //var_dump($meta);die();
             \wp_localize_script( 'vform-data-filler', 'vFormData', [$meta]);
         }
-    }
+
 }
