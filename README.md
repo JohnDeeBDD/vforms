@@ -8,8 +8,6 @@ Login as an editor or an administrator.
 
 From the admin area, click the "Forms" tab. Use the drag and drop interface to create a form. 
 
-&nbsp;&nbsp; **REQUIRED:** Add a text input field called "vform-rec-id". If you don't, the form won't save.
-
 "Publish" the Vform. The VForm can only be seen in the frontend via the generated shortcode.
 
 &nbsp;&nbsp; **OPTIONAL** Consider publishing the post / page as "private".
