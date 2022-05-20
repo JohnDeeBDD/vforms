@@ -12,33 +12,33 @@ const VFormDataFiller = {};
 
 jQuery( document ).ready(function() {
     console.log( "DOCUMENT READY!" );
-    VFormDataFiller.doFill();
+    //VFormDataFiller.doFill();
 });
 
 VFormDataFiller.doFill = function() {
-    console.log("waiting for vFormData");
-    console.log(vFormData);
+    //console.log("waiting for vFormData: ");
     vFormDataJSON = JSON.parse(vFormData);
+    //console.log(vFormData);
     var data = VFormDataFiller.getDataEntries(vFormDataJSON);
-    console.log(data);
+    //console.log(data);
     var keys = VFormDataFiller.getDataKeys(vFormDataJSON);
     keys.forEach((key) => {
         var selector = "#" + key;
         //console.log(selector);
         var checkboxSelector = "input[name='" + key + "[]" + "']";
-        console.log(checkboxSelector);
+        //console.log(checkboxSelector);
 
         if(jQuery(checkboxSelector).attr('type') == "checkbox"){
-            console.log("CHECKBOX: ");
-            console.log(selector);
-            console.log(data[key]);
+           // console.log("CHECKBOX: ");
+            //console.log(selector);
+            //console.log(data[key]);
             jQuery.each(data[key], function(i, val){
                 jQuery("input[value='" + val + "']").prop('checked', true);
             });
         }
 
         var radioSelector = "input[name='" + key + "'][value='" + data[key] + "']";
-        console.log(radioSelector);
+       // console.log(radioSelector);
         //console.log(checkboxSelector);
         if(jQuery(radioSelector).attr('type') == "radio"){
             console.log("RADIO GROUP: ");
@@ -47,7 +47,8 @@ VFormDataFiller.doFill = function() {
             jQuery(radioSelector).prop('checked', true);
         }
 
-
+        console.log("SELECTOR: " + selector);
+        console.log("DATA[KEY]: " + data[key]);
         jQuery(selector).val(data[key]);
     });
 }

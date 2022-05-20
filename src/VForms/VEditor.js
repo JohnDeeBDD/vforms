@@ -13,18 +13,17 @@ jQuery(function($) {
     console.log(formData);
     $(document.getElementById('fb-editor')).formBuilder(formData);
     var formBuilder = $(fbEditor).formBuilder();
-    //$(document).submit(function(e) {
-      //  e.preventDefault();
-      //  $(this).unbind('submit').submit();
-     //   $("#post, #save").submit();
-    //});
-    //alert("hi");
-    $("#submitdiv").after("<a id = 'smash-to-content'>Save VForm to Content</a>");
-
-    $("#smash-to-content").click(function(){
+    $(document).submit(function(e) {
+        e.preventDefault();
+        $(this).unbind('submit').submit();
         console.log("click");
         var fieldData = formBuilder.actions.getData('json', true);
         //fieldData = "defaultFields: " + fieldData;
         $("#content").val(fieldData);
+        $("#post, #save").submit();
+
     });
+
+    //$("#submitdiv").after("<a id = 'smash-to-content'>Save VForm to Content</a>");
+    //$("#smash-to-content").click(function(){});
 });

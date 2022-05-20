@@ -29,7 +29,7 @@ class VEditor{
     public function doEchoAdminFooter(){
         $output = <<<OUTPUT
 <style>
-/*#postdivrich{display:none;}*/
+#postdivrich{display:none;}
 #minor-publishing{display:none;}
 .get-data{display:none !important;}
 .save-template{display:none !important;}

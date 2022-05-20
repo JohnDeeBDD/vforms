@@ -26,7 +26,7 @@ jQuery(function($) {
           url = url + '?vform-rec-id=' + $('#vform-rec-id').val();
           $('#vform-form').attr('action', url);          
     });
-   //VFormDataFiller.doFill(); 
+    VFormDataFiller.doFill(); 
 });
 </script>
 OUTPUT;
@@ -99,8 +99,6 @@ OUTPUT;
 
     public function doEnqueuFrontendScripts(){
         //die("wtf");
-        //$meta = get_post_meta( $ID );
-        //$keys = array_keys($meta);
         \wp_enqueue_script('vform-data-filler', \get_site_url().'/wp-content/plugins/vforms/src/VForms/vform-data-filler.js');
         if(isset($_GET['vform-rec-id'])){
 
@@ -118,6 +116,7 @@ OUTPUT;
   */
           //  $x = get_post_meta($vDataPostID, "")
             $meta = get_post_meta( $vDataPostID);
+            //die("line 121");
             //var_dump($meta);die("scf120");
             $fixedMeta = [];
             $keys = array_keys($meta);
