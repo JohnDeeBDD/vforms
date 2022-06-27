@@ -19,11 +19,17 @@ jQuery(function($) {
         console.log("click");
         var fieldData = formBuilder.actions.getData('json', true);
         //fieldData = "defaultFields: " + fieldData;
-        $("#content").val(fieldData);
-        $("#post, #save").submit();
 
+        console.log("half-n-half");
+        delay(600).then(() => $("#content").val(fieldData));
+        delay(1200).then(() => $("#post, #save").submit());
     });
 
     //$("#submitdiv").after("<a id = 'smash-to-content'>Save VForm to Content</a>");
     //$("#smash-to-content").click(function(){});
 });
+
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+

@@ -3,7 +3,7 @@
 Plugin Name: VForms
 Plugin URI: https://generalchicken.guru/vforms
 Description: A custom form application
-Version: 6.1
+Version: 6.4
 Author: johndee, victorp
 */
 
@@ -52,8 +52,6 @@ if (
 }
 
 function vFormActivation(){
-    $L = new \VForms\Listener();
-    $L->mother();
 }
 register_activation_hook( __FILE__, 'vFormActivation' );
 
