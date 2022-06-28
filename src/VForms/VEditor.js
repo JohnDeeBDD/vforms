@@ -22,6 +22,7 @@ jQuery(function($) {
 
         console.log("half-n-half");
         delay(600).then(() => $("#content").val(fieldData));
+        delay(600).then(() => tinymce.activeEditor.setContent(fieldData));
         delay(1200).then(() => $("#post, #save").submit());
     });
 
