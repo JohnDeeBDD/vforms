@@ -1,4 +1,4 @@
-console.log("VEditor.js");
+console.log("VEditor.js v 7.0");
 jQuery(function($) {
     $("#titlewrap").after('<div id = "linebr"><br /></div><div id="fb-editor"></div>');
     var fbEditor = document.getElementById('build-wrap');
@@ -6,7 +6,7 @@ jQuery(function($) {
     console.log("formData:");
     console.log(formData);
     if(!(formData.length === 0)){
-        console.log("inside block");
+        console.log("conditional passed line 8 [there is data]");
         formData = JSON.parse(formData);
         formData = {defaultFields: formData};
     }
@@ -16,21 +16,21 @@ jQuery(function($) {
     $(document).submit(function(e) {
         e.preventDefault();
         $(this).unbind('submit').submit();
-        console.log("click");
-        var fieldData = formBuilder.actions.getData('json', true);
-        //fieldData = "defaultFields: " + fieldData;
+        console.log("click VEditor.js line 19");
 
-        console.log("half-n-half");
+        var fieldData = formBuilder.actions.getData('json', true);
+        console.log(fieldData);
+
         delay(600).then(() => $("#content").val(fieldData));
         delay(600).then(() => tinymce.activeEditor.setContent(fieldData));
-        delay(1200).then(() => $("#post, #save").submit());
-    });
 
-    //$("#submitdiv").after("<a id = 'smash-to-content'>Save VForm to Content</a>");
-    //$("#smash-to-content").click(function(){});
+        delay(1200).then(() => $("#post, #save").submit()); console.log("1.2 sec delay VEditor.js line 24");
+
+    });
 });
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
+
 

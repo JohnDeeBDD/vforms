@@ -3,7 +3,7 @@
 Plugin Name: VForms
 Plugin URI: https://generalchicken.guru/vforms
 Description: A custom form application
-Version: 6.4
+Version: 7.0
 Author: johndee, victorp
 */
 
